@@ -4,6 +4,11 @@ import { StatusBar } from "expo-status-bar";
 import { Slot } from 'expo-router'
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header";
+import { NativeWindStyleSheet } from "nativewind";
+
+NativeWindStyleSheet.setOutput({
+    default: "native",
+});
 
 export default function Layout() {
     return (

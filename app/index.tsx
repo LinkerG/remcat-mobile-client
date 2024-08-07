@@ -1,30 +1,17 @@
-// app/index
-import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
-import { getCompetitions } from '../services/api/competitions';
-import { Competition } from '../services/types/competition';
-import { CompetitionCard } from '../components/CompetitionCard';
+// /
+import React from "react"
+import { View, Text, Pressable } from "react-native"
+import { Link } from "expo-router"
 
-const HomeScreen = () => {
-    const [competitions, setCompetitions] = useState<Competition[]>();
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await getCompetitions();
-            setCompetitions(result);
-            setLoading(false)
-        };
-        fetchData();
-    }, []);
-
+export default function Index() {
     return (
-        <View className='w-100 h-100 flex flex-col bg-blue-100'>
-            {!loading && competitions?.map((competition) => (
-                <CompetitionCard key={competition._id} competition={competition} />
-            ))}
+        <View>
+            <Text>Soy el inicio</Text>
+            <Link asChild href="competitions">
+                <Pressable className="border">
+                    <Text>Competiciones</Text>
+                </Pressable>
+            </Link>
         </View>
-    );
-};
-
-export default HomeScreen;
+    )
+}
