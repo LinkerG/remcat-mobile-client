@@ -4,7 +4,7 @@ export type Competition = {
     date: Date
     location: string
     image: string
-    boat_type: string
+    boatType: string
     lines: number
     line_distance: number
     isCancelled: boolean

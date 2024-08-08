@@ -12,9 +12,9 @@ NativeWindStyleSheet.setOutput({
 
 export default function Layout() {
     return (
-        <View className="w-100 h-full bg-black">
-            <SafeAreaView>
-                <View className="w-100 h-full bg-blue-100">
+        <View className="w-100 bg-black flex-1">
+            <SafeAreaView className="h-full">
+                <View className="w-100 h-full bg-white">
                     <StatusBar style="light" />
                     <Header />
                     <Slot />

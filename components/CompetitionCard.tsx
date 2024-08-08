@@ -1,19 +1,27 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { Competition } from '../services/types/competition';
+import { Link } from 'expo-router';
 
 interface CompetitionProps {
     competition: Competition;
 }
 
+
 export function CompetitionCard({ competition }: CompetitionProps) {
+    const link = `/competitions/${competition._id}`
+
     return (
-        <View
-            className="border border-black m-5"
+        <Link
+            className="shadow-md m-5 p-5 h-20 "
+            href={link}
+            asChild
         >
-            <Text>{competition.name}</Text>
-            <Text>{competition.location}</Text>
-            <Text>{competition.boat_type}</Text>
-        </View>
+            <Pressable>
+                <Text>{competition.name}</Text>
+                <Text>{competition.location}</Text>
+                <Text>{competition.boatType}</Text>
+            </Pressable>
+        </Link>
     );
 }

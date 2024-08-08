@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import { getCompetitions } from '../services/api/competitions';
 import { Competition } from '../services/types/competition';
 import { CompetitionCard } from '../components/CompetitionCard';
+import { Page } from '../components/Pages';
 
 const Competitions = () => {
     const [competitions, setCompetitions] = useState<Competition[]>();
@@ -19,11 +20,11 @@ const Competitions = () => {
     }, []);
 
     return (
-        <View className='w-100 h-100 flex flex-col bg-blue-100'>
+        <Page>
             {!loading && competitions?.map((competition) => (
                 <CompetitionCard key={competition._id} competition={competition} />
             ))}
-        </View>
+        </Page>
     );
 };
 
