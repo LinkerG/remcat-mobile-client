@@ -19,7 +19,7 @@ export const getCompetitions = async () => {
 
 export const getCompetitionById = async (_id: string) => {
     try {
-        const response = await apiClient.get("/competitions/${_id}")
+        const response = await apiClient.get(`/competitions/${_id}`)
         console.log(response.data.competition);
         const competition: Competition = response.data.competition;
         return competition
