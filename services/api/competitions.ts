@@ -4,8 +4,12 @@ import { Competition } from "../types/competition"
 export const getCompetitions = async () => {
     try {
         const response = await apiClient.get("/competitions")
-        console.log(response.data.competitions);
-        const competitions: Competition[] = response.data.competitions;
+        const competitions: Competition[] = response.data.competitions.map((competition: Competition) => ({
+            ...competition,
+            date: new Date(competition.date),
+        }));
+        console.log(competitions);
+
         return competitions
     } catch (error: any) {
         console.error("Error fetching data:", error.message)
@@ -20,8 +24,9 @@ export const getCompetitions = async () => {
 export const getCompetitionById = async (_id: string) => {
     try {
         const response = await apiClient.get(`/competitions/${_id}`)
-        console.log(response.data.competition);
         const competition: Competition = response.data.competition;
+        competition.date = new Date(competition.date)
+        console.log(competition);
         return competition
     } catch (error: any) {
         console.error("Error fetching data:", error.message)
@@ -36,8 +41,12 @@ export const getCompetitionById = async (_id: string) => {
 export const getCompetitionsBySeason = async (season: string) => {
     try {
         const response = await apiClient.get(`/competitions/season/${season}`)
-        console.log(response.data.competitions);
-        const competitions: Competition[] = response.data.competitions;
+        const competitions: Competition[] = response.data.competitions.map((competition: Competition) => ({
+            ...competition,
+            date: new Date(competition.date),
+        }));
+        console.log(competitions);
+
         return competitions
     } catch (error: any) {
         console.error("Error fetching data:", error.message)
