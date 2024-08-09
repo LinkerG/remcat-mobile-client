@@ -12,8 +12,7 @@ export default function CompetitionResume() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const result = await getCompetitionById(competition_id as string);
-            setCompetition(result);
+            setCompetition(await getCompetitionById(competition_id as string));
             setLoading(false)
         };
         fetchData();

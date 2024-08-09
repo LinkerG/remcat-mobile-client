@@ -19,6 +19,7 @@ export function CompetitionCard({ competition }: CompetitionProps) {
                 <Text>{competition.name}</Text>
                 <Text>{competition.location}</Text>
                 <Text>{competition.boatType}</Text>
+                <Text>{competition.date.toString()}</Text>
             </Pressable>
         </Link>
     );

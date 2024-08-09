@@ -1,7 +1,6 @@
 // /
 import React, { useEffect, useState } from "react"
-import { Text, Pressable } from "react-native"
-import { Link } from "expo-router"
+import { Text } from "react-native"
 import { Page } from "../../components/Pages"
 import { Competition } from "../../services/types/competition"
 import { getNextCompetition } from "../../services/api/competitions"
@@ -35,8 +34,7 @@ export default function Home() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const result = await getNextCompetition();
-            setCompetition(result);
+            setCompetition(await getNextCompetition());
             setLoading(false)
         };
         fetchData();

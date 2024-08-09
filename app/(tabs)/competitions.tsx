@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { getCompetitions } from '../../services/api/competitions';
 import { Competition } from '../../services/types/competition';
 import { CompetitionCard } from '../../components/CompetitionCard';
-import { Page } from '../../components/Pages';
+import { ScrollPage } from '../../components/Pages';
 
 const Competitions = () => {
     const [competitions, setCompetitions] = useState<Competition[]>();
@@ -19,11 +19,11 @@ const Competitions = () => {
     }, []);
 
     return (
-        <Page>
+        <ScrollPage>
             {!loading && competitions?.map((competition) => (
                 <CompetitionCard key={competition._id} competition={competition} />
             ))}
-        </Page>
+        </ScrollPage>
     );
 };
 

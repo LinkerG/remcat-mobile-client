@@ -12,8 +12,7 @@ export default function TeamResume() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const result = await getTeam(short_name as string);
-            setTeam(result);
+            setTeam(await getTeam(short_name as string));
             setLoading(false)
         };
         fetchData();

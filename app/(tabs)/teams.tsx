@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Page } from "../../components/Pages";
+import { ScrollPage } from "../../components/Pages";
 import { Team } from "../../services/types/team";
 import { TeamCard } from "../../components/TeamCard";
 import { getTeams } from "../../services/api/teams";
@@ -10,18 +10,17 @@ export default function Teams() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const result = await getTeams();
-            setTeams(result);
+            setTeams(await getTeams());
             setLoading(false)
         };
         fetchData();
     }, []);
 
     return (
-        <Page>
+        <ScrollPage>
             {!loading && teams?.map((team) => (
                 <TeamCard key={team._id} team={team} />
             ))}
-        </Page>
+        </ScrollPage>
     );
 }
