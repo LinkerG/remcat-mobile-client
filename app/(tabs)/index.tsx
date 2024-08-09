@@ -2,7 +2,7 @@
 import React from "react"
 import { Text, Pressable } from "react-native"
 import { Link } from "expo-router"
-import { Page } from "../components/Pages"
+import { Page } from "../../components/Pages"
 
 export default function Index() {
     return (

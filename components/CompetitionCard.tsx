@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, Text } from 'react-native';
 import { Competition } from '../services/types/competition';
 import { Link } from 'expo-router';
 
@@ -9,12 +9,10 @@ interface CompetitionProps {
 
 
 export function CompetitionCard({ competition }: CompetitionProps) {
-    const link = `/competitions/${competition._id}`
-
     return (
         <Link
-            className="shadow-md m-5 p-5 h-20 "
-            href={link}
+            className="shadow-md m-5 p-5 "
+            href={`/competitions/${competition._id}`}
             asChild
         >
             <Pressable>

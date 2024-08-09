@@ -1,10 +1,10 @@
 // /competitions
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { getCompetitions } from '../services/api/competitions';
-import { Competition } from '../services/types/competition';
-import { CompetitionCard } from '../components/CompetitionCard';
-import { Page } from '../components/Pages';
+import { getCompetitions } from '../../services/api/competitions';
+import { Competition } from '../../services/types/competition';
+import { CompetitionCard } from '../../components/CompetitionCard';
+import { Page } from '../../components/Pages';
 
 const Competitions = () => {
     const [competitions, setCompetitions] = useState<Competition[]>();
