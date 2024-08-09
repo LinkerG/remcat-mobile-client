@@ -20,6 +20,18 @@ export default function TabsLayout() {
                     title: "Competiciones"
                 }}
             />
+            <Tabs.Screen
+                name="league"
+                options={{
+                    title: "Liga"
+                }}
+            />
+            <Tabs.Screen
+                name="teams"
+                options={{
+                    title: "Equipos"
+                }}
+            />
         </Tabs>
     )
 }

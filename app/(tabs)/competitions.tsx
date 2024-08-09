@@ -1,6 +1,5 @@
 // /competitions
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
 import { getCompetitions } from '../../services/api/competitions';
 import { Competition } from '../../services/types/competition';
 import { CompetitionCard } from '../../components/CompetitionCard';
