@@ -16,7 +16,7 @@ export default function TeamResume() {
             setLoading(false)
         };
         fetchData();
-    }, []);
+    }, [short_name]);
 
     return (
         <Page>

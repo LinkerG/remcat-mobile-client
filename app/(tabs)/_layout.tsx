@@ -6,14 +6,7 @@ export default function TabsLayout() {
         <Tabs
             screenOptions={{
                 headerShown: false,
-
             }}>
-            <Tabs.Screen
-                name="index"
-                options={{
-                    title: "Home"
-                }}
-            />
             <Tabs.Screen
                 name="competitions"
                 options={{
@@ -27,9 +20,21 @@ export default function TabsLayout() {
                 }}
             />
             <Tabs.Screen
+                name="index"
+                options={{
+                    title: "Home"
+                }}
+            />
+            <Tabs.Screen
                 name="teams"
                 options={{
                     title: "Equipos"
+                }}
+            />
+            <Tabs.Screen
+                name="account"
+                options={{
+                    title: "Cuenta"
                 }}
             />
         </Tabs>

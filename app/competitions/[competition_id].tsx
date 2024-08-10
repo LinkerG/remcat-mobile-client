@@ -16,7 +16,7 @@ export default function CompetitionResume() {
             setLoading(false)
         };
         fetchData();
-    }, []);
+    }, [competition_id]);
 
     return (
         <Page>
