@@ -40,23 +40,34 @@ export default function Home() {
         fetchData();
     }, []);
 
-    const nextCompetition = competitions[0]
-
-    const isCompetitionToday = nextCompetition && isToday(nextCompetition.date)
+    const nextCompetition = competitions[0];
+    const isCompetitionToday = nextCompetition ? isToday(nextCompetition.date) : false;
 
     return (
         <Page>
-            {(!loading && nextCompetition) && (
+            {(!loading) && (
                 <>
-                    {(isCompetitionToday) ? (
-                        <Text>La competición de hoy!!</Text>
-                    ) : (
-                        <Text>Proxima competicion, faltan {getDaysLeft(nextCompetition.date)} dias</Text>
-                    )}
-                    {nextCompetition ? (
-                        <CompetitionCard competition={nextCompetition} />
-                    ) : (
+                    {(competitions.length === 0) ? (
                         <Text>Mas competiciones proximamente</Text>
+                    ) : (
+                        <>
+                            {isCompetitionToday ? (
+                                <Text>¡La competición de hoy!</Text>
+                            ) : (
+                                <Text>Próxima competición, faltan {getDaysLeft(nextCompetition.date)} días</Text>
+                            )}
+                            <CompetitionCard competition={nextCompetition} />
+                            <Text>Próximas competiciones</Text>
+                            {(competitions.length > 1) &&
+                                competitions.map((competition, i) => (
+                                    i === 0 ? (
+                                        null
+                                    ) : (
+                                        <CompetitionCard competition={competition} />
+                                    )
+                                ))
+                            }
+                        </>
                     )}
                 </>
             )}
