@@ -1,5 +1,6 @@
 export type Competition = {
     _id: string
+    slug: string
     name: string
     date: Date
     location: string

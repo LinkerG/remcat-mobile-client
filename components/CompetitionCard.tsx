@@ -7,12 +7,11 @@ interface CompetitionProps {
     competition: Competition;
 }
 
-
 export function CompetitionCard({ competition }: CompetitionProps) {
     return (
         <Link
             className="shadow-md m-5 p-5 "
-            href={`/competitions/${competition._id}`}
+            href={`/competitions/${competition.slug}`}
             asChild
         >
             <Pressable>

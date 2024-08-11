@@ -38,6 +38,23 @@ export const getCompetitionById = async (_id: string) => {
     }
 }
 
+export const getCompetitionBySlug = async (slug: string) => {
+    try {
+        const response = await apiClient.get(`/competitions/slug/${slug}`)
+        const competition: Competition = response.data.competition;
+        competition.date = new Date(competition.date)
+        console.log(competition);
+        return competition
+    } catch (error: any) {
+        console.error("Error fetching data:", error.message)
+        console.error(
+            "Error details:",
+            error.response ? error.response.data : "No response data",
+        )
+        throw error
+    }
+}
+
 export const getCompetitionsBySeason = async (season: string) => {
     try {
         const response = await apiClient.get(`/competitions/season/${season}`)
