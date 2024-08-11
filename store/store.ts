@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit"
 import yearReducer from "./reducers/year"
 import modalReducer from "./reducers/selectYearModal"
+import categoryReducer from "./reducers/categories"
 
 export const store = configureStore({
     reducer: {
         year: yearReducer,
-        modal: modalReducer
+        modal: modalReducer,
+        category: categoryReducer,
     },
 })
 
