@@ -1,7 +1,7 @@
 // /
 import React, { useEffect, useState } from "react"
 import { Text } from "react-native"
-import { Page } from "../../components/Pages"
+import { ScrollPage } from "../../components/Pages"
 import { Competition } from "../../services/types/competition"
 import { getNextCompetitions } from "../../services/api/competitions"
 import { CompetitionCard } from "../../components/CompetitionCard"
@@ -40,26 +40,37 @@ export default function Home() {
         fetchData();
     }, []);
 
-    const nextCompetition = competitions[0]
-
-    const isCompetitionToday = nextCompetition && isToday(nextCompetition.date)
+    const nextCompetition = competitions[0];
+    const isCompetitionToday = nextCompetition ? isToday(nextCompetition.date) : false;
 
     return (
-        <Page>
-            {(!loading && nextCompetition) && (
+        <ScrollPage>
+            {(!loading) && (
                 <>
-                    {(isCompetitionToday) ? (
-                        <Text>La competición de hoy!!</Text>
+                    {(competitions.length === 0) ? (
+                        <Text className="m-5">Mas competiciones proximamente</Text>
                     ) : (
-                        <Text>Proxima competicion, faltan {getDaysLeft(nextCompetition.date)} dias</Text>
-                    )}
-                    {nextCompetition ? (
-                        <CompetitionCard competition={nextCompetition} />
-                    ) : (
-                        <Text>Mas competiciones proximamente</Text>
+                        <>
+                            {isCompetitionToday ? (
+                                <Text className="m-5">¡La competición de hoy!</Text>
+                            ) : (
+                                <Text className="m-5">Próxima competición, faltan {getDaysLeft(nextCompetition.date)} días</Text>
+                            )}
+                            <CompetitionCard competition={nextCompetition} />
+                            <Text className="m-5">Próximas competiciones</Text>
+                            {(competitions.length > 1) &&
+                                competitions.map((competition, i) => (
+                                    i === 0 ? (
+                                        null
+                                    ) : (
+                                        <CompetitionCard key={competition._id} competition={competition} />
+                                    )
+                                ))
+                            }
+                        </>
                     )}
                 </>
             )}
-        </Page>
+        </ScrollPage>
     )
 }
