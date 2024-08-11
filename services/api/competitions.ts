@@ -75,14 +75,16 @@ export const getCompetitionsBySeason = async (season: string) => {
     }
 }
 
-export const getNextCompetition = async () => {
+export const getNextCompetitions = async () => {
     try {
-        const response = await apiClient.get(`/competitions/nextCompetition`)
-        const competition: Competition = response.data.competition;
-        competition.date = new Date(competition.date)
-        console.log(competition);
+        const response = await apiClient.get(`/competitions/nextCompetitions`)
+        const competitions: Competition[] = response.data.competitions.map((competition: Competition) => ({
+            ...competition,
+            date: new Date(competition.date),
+        }));
+        console.log(competitions)
 
-        return competition
+        return competitions
     } catch (error: any) {
         console.error("Error fetching data:", error.message)
         console.error(

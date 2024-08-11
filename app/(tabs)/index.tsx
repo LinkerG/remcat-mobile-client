@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import { Text } from "react-native"
 import { Page } from "../../components/Pages"
 import { Competition } from "../../services/types/competition"
-import { getNextCompetition } from "../../services/api/competitions"
+import { getNextCompetitions } from "../../services/api/competitions"
 import { CompetitionCard } from "../../components/CompetitionCard"
 
 function isToday(date: Date) {
@@ -30,29 +30,31 @@ function getDaysLeft(date: Date) {
 
 export default function Home() {
     const [loading, setLoading] = useState<boolean>(true)
-    const [competition, setCompetition] = useState<Competition>()
+    const [competitions, setCompetitions] = useState<Competition[]>([])
 
     useEffect(() => {
         const fetchData = async () => {
-            setCompetition(await getNextCompetition());
+            setCompetitions(await getNextCompetitions());
             setLoading(false)
         };
         fetchData();
     }, []);
 
-    const isCompetitionToday = competition && isToday(competition.date)
+    const nextCompetition = competitions[0]
+
+    const isCompetitionToday = nextCompetition && isToday(nextCompetition.date)
 
     return (
         <Page>
-            {(!loading && competition) && (
+            {(!loading && nextCompetition) && (
                 <>
                     {(isCompetitionToday) ? (
                         <Text>La competición de hoy!!</Text>
                     ) : (
-                        <Text>Proxima competicion, faltan {getDaysLeft(competition.date)} dias</Text>
+                        <Text>Proxima competicion, faltan {getDaysLeft(nextCompetition.date)} dias</Text>
                     )}
-                    {competition ? (
-                        <CompetitionCard competition={competition} />
+                    {nextCompetition ? (
+                        <CompetitionCard competition={nextCompetition} />
                     ) : (
                         <Text>Mas competiciones proximamente</Text>
                     )}
