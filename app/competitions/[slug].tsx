@@ -7,16 +7,13 @@ import { Competition } from "../../services/types/competition";
 import { Text, View } from "react-native";
 import { Result } from "../../services/types/result";
 import { getResultsFromCompetition } from "../../services/api/results";
-import { useCategory, useDivision } from "../../hooks/useCategory";
+import CompetitionResults from "../../components/CompetitionResults";
 
 export default function CompetitionResume() {
     const { slug } = useLocalSearchParams();
     const [loading, setLoading] = useState<boolean>(true)
     const [competition, setCompetition] = useState<Competition>()
     const [results, setResults] = useState<Result[]>()
-
-    const category = useCategory();
-    const division = useDivision();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,7 +33,7 @@ export default function CompetitionResume() {
 
     return (
         <ScrollPage>
-            {!loading && competition && (
+            {!loading && competition && results && (
                 <>
                     <View
                         className="m-5 border"
@@ -47,6 +44,7 @@ export default function CompetitionResume() {
                         className="m-5 border"
                     >
                         <Text>Resultados</Text>
+                        <CompetitionResults results={results} />
                     </View>
                 </>
             )}
