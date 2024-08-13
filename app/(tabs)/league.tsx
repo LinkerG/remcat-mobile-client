@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Page } from "../../components/Pages"
-import { Text } from "react-native"
+import { Text, View } from "react-native"
 import { useYear } from "../../hooks/useYear"
 import { League } from "../../services/types/league"
 import { getLeagueResults } from "../../services/api/league"
@@ -23,10 +23,10 @@ export default function LeagueResume() {
     return (
         <Page>
             {!loading && (
-                <>
+                <View className="m-5">
                     <Text>Datos de la liga {year}</Text>
                     <LeagueResults leagues={leagueResume as League[]} />
-                </>
+                </View>
             )}
         </Page>
     )
