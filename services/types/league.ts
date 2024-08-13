@@ -1,10 +1,10 @@
 export type League = {
     boatType: string
     category: string
-    teamSummary: TeamSummary
+    teamSummary: TeamSummary[]
 }
 
 export type TeamSummary = {
     teamName: string
-    points: string
+    points: number
 }

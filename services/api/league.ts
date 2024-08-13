@@ -3,8 +3,8 @@ import { League, TeamSummary } from "../types/league"
 
 export const getLeagueResults = async (year: string) => {
     try {
-        //const response = await apiClient.get("/competitions")
-        const league: any = []
+        const response = await apiClient.get(`/league/${year}`)
+        const league: League[] = response.data.leagues
         console.log(league);
 
         return league

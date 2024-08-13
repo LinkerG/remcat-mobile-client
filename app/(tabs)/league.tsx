@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react"
 import { Page } from "../../components/Pages"
 import { Text } from "react-native"
 import { useYear } from "../../hooks/useYear"
-import { League, TeamSummary } from "../../services/types/league"
+import { League } from "../../services/types/league"
 import { getLeagueResults } from "../../services/api/league"
+import LeagueResults from "../../components/LeagueResults"
 
 export default function LeagueResume() {
     const year = useYear()
-    const [leagueResume, setLeagueResume] = useState<League>()
+    const [leagueResume, setLeagueResume] = useState<League[]>()
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -17,12 +18,16 @@ export default function LeagueResume() {
             setLoading(false)
         }
         fetchData();
-    }, [])
+    }, [year])
 
     return (
         <Page>
-            <Text>Datos de la liga {year}</Text>
-
+            {!loading && (
+                <>
+                    <Text>Datos de la liga {year}</Text>
+                    <LeagueResults leagues={leagueResume as League[]} />
+                </>
+            )}
         </Page>
     )
 }
