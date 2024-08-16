@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, Image } from 'react-native';
 import { Team } from '../services/types/team';
 import { Link } from 'expo-router';
 
@@ -16,6 +16,10 @@ export function TeamCard({ team }: TeamProps) {
             asChild
         >
             <Pressable>
+                <Image
+                    source={{ uri: `data:image/jpeg;base64,${team.image}` }}
+                    style={{ width: 100, height: 100 }}
+                />
                 <Text>{team.name}</Text>
                 <Text>{team.shortName}</Text>
             </Pressable>
