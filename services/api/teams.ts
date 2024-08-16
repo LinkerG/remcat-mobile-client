@@ -1,5 +1,6 @@
 import { apiClient } from "./apiClient"
 import { Team } from "../types/team"
+import { TeamResume } from "../types/league";
 
 export const getTeams = async () => {
     try {
@@ -23,6 +24,22 @@ export const getTeam = async (teamName: string) => {
         console.log(response.data.teams);
         const team: Team = response.data.team;
         return team
+    } catch (error: any) {
+        console.error("Error fetching data:", error.message)
+        console.error(
+            "Error details:",
+            error.response ? error.response.data : "No response data",
+        )
+        throw error
+    }
+}
+
+export const getTeamResume = async (teamName: string) => {
+    try {
+        const response = await apiClient.get(`/teams/${teamName}/resume`)
+        console.log(response.data.resume);
+        const resume: TeamResume[] = response.data.resume;
+        return resume
     } catch (error: any) {
         console.error("Error fetching data:", error.message)
         console.error(
