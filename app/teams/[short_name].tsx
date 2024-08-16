@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Page } from "../../components/Pages";
 import { useLocalSearchParams } from "expo-router";
-import { Team } from "../../services/types/team";
-import { getTeam } from "../../services/api/teams";
+import { Team } from "../../types/types";
+import { getTeam } from "../../api/teams";
 import { TeamCard } from "../../components/TeamCard";
 
 export default function TeamResume() {

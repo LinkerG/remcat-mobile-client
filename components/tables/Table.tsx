@@ -1,5 +1,6 @@
 import React from "react";
-import { Result, sortResults } from "../../services/types/result";
+import { Result } from "../../types/types";
+import { sortResults } from "../../utils/sortResults";
 import { Text, View } from "react-native";
 
 interface Props {

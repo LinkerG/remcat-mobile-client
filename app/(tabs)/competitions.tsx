@@ -1,7 +1,7 @@
 // /competitions
 import React, { useEffect, useState } from 'react';
-import { getCompetitionsBySeason } from '../../services/api/competitions';
-import { Competition } from '../../services/types/competition';
+import { getCompetitionsBySeason } from '../../api/competitions';
+import { Competition } from '../../types/types';
 import { CompetitionCard } from '../../components/CompetitionCard';
 import { ScrollPage } from '../../components/Pages';
 import { useYear } from '../../hooks/useYear';

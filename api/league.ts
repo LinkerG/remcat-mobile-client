@@ -1,5 +1,5 @@
 import { apiClient } from "./apiClient"
-import { League, TeamSummary } from "../types/league"
+import { League } from "../types/types"
 
 export const getLeagueResults = async (year: string) => {
     try {

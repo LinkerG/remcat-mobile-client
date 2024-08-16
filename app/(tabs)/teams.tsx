@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ScrollPage } from "../../components/Pages";
-import { Team } from "../../services/types/team";
+import { Team } from "../../types/types";
 import { TeamCard } from "../../components/TeamCard";
-import { getTeams } from "../../services/api/teams";
+import { getTeams } from "../../api/teams";
 
 export default function Teams() {
     const [teams, setTeams] = useState<Team[]>();

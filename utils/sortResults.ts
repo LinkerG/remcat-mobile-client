@@ -1,12 +1,4 @@
-export type Result = {
-    _id: string;
-    competition_id: string;
-    teamShortName: string;
-    category: string;
-    time: string;
-    isFinal: boolean;
-    isValid: boolean;
-}
+import { Result } from "../types/types";
 
 function convertToMilliseconds(time: string): number {
     if (time === "DNS" || time === "DNF") {

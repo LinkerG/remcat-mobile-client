@@ -1,6 +1,5 @@
 import { apiClient } from "./apiClient"
-import { Team } from "../types/team"
-import { TeamResume } from "../types/league";
+import { Team, TeamResume } from "../types/types"
 
 export const getTeams = async () => {
     try {

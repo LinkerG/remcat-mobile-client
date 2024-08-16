@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, Text, Image } from 'react-native';
-import { Team } from '../services/types/team';
+import { Team } from '../types/types';
 import { Link } from 'expo-router';
 
 interface TeamProps {

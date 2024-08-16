@@ -1,5 +1,5 @@
 import React from "react";
-import { League } from "../../services/types/league";
+import { League } from "../../types/types";
 import { Text, View } from "react-native";
 
 interface Props {
@@ -10,7 +10,7 @@ export default function LeagueTable({ league }: Props) {
     // Ordena los equipos por la cantidad de puntos de mayor a menor
     const sortedLeague = {
         ...league,
-        teamSummary: league.teamSummary.sort((a, b) => b.points - a.points)
+        teamSummary: league.leagueSummary.sort((a, b) => b.points - a.points)
     };
 
     return (

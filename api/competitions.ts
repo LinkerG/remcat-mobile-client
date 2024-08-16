@@ -1,5 +1,5 @@
 import { apiClient } from "./apiClient"
-import { Competition } from "../types/competition"
+import { Competition } from "../types/types"
 
 export const getCompetitions = async () => {
     try {

@@ -3,8 +3,8 @@ import { useBoatType, useSetBoatType } from "../hooks/useBoatType";
 import { useCategory, useDivision, useSetCategory, useSetDivision } from "../hooks/useCategory";
 import { Text, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { League } from "../services/types/league";
-import { categories, divisions, boatTypes } from "../services/types/consts";
+import { League } from "../types/types";
+import { categories, divisions, boatTypes } from "../types/consts";
 import LeagueTable from "./tables/LeagueTable";
 
 interface Props {

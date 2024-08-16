@@ -2,11 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { ScrollPage } from "../../components/Pages";
 import { useLocalSearchParams } from "expo-router";
-import { getCompetitionBySlug } from "../../services/api/competitions";
-import { Competition } from "../../services/types/competition";
+import { getCompetitionBySlug } from "../../api/competitions";
+import { Competition, Result } from "../../types/types";
 import { Text, View } from "react-native";
-import { Result } from "../../services/types/result";
-import { getResultsFromCompetition } from "../../services/api/results";
+import { getResultsFromCompetition } from "../../api/results";
 import CompetitionResults from "../../components/CompetitionResults";
 
 export default function CompetitionResume() {
