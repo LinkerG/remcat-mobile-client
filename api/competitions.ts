@@ -98,7 +98,7 @@ export const getNextCompetitions = async () => {
 export const getYears = async () => {
     try {
         const response = await apiClient.get(`/competitions/years`)
-        console.log(response.data.competitions);
+        console.log(response.data);
         const years: number[] = response.data;
         return years
     } catch (error: any) {

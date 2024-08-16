@@ -4,10 +4,10 @@ import { League } from "../types/types"
 export const getLeagueResults = async (year: string) => {
     try {
         const response = await apiClient.get(`/league/${year}`)
-        const league: League[] = response.data.leagues
-        console.log(league);
+        const leagues: League[] = response.data.leagues
+        console.log(leagues);
 
-        return league
+        return leagues
     } catch (error: any) {
         console.error("Error fetching data:", error.message)
         console.error(
