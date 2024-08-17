@@ -4,7 +4,7 @@ import { TeamResumeComponent } from "../../components/TeamResume";
 import { useLocalSearchParams } from "expo-router";
 import { Team, TeamResume } from "../../types/types";
 import { getTeam, getTeamResume } from "../../api/teams";
-import { Image, Text, View, ScrollView } from "react-native";
+import { Image, Text, View } from "react-native";
 
 export default function TeamDetail() {
     const { short_name } = useLocalSearchParams();
