@@ -20,7 +20,7 @@ export const getTeams = async () => {
 export const getTeam = async (teamName: string) => {
     try {
         const response = await apiClient.get(`/teams/${teamName}`)
-        console.log(response.data.teams);
+        console.log(response.data.team);
         const team: Team = response.data.team;
         return team
     } catch (error: any) {
