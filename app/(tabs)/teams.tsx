@@ -19,7 +19,7 @@ export default function Teams() {
     return (
         <ScrollPage>
             {!loading && teams?.map((team) => (
-                <TeamCard key={team._id} team={team} />
+                <TeamCard key={team.shortName} team={team} />
             ))}
         </ScrollPage>
     );

@@ -23,9 +23,6 @@ export default function SelectYearModal() {
         fetchData();
     }, [])
 
-    console.log(years)
-    console.log(actualYear)
-
     const dispatch: AppDispatch = useDispatch();
     const isOpen = useSelector((state: RootState) => state.modal.isOpen);
 
