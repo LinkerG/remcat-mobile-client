@@ -1,5 +1,5 @@
 import { apiClient } from "./apiClient"
-import { Result } from "../types/result"
+import { Result } from "../types/types"
 
 export const getResultsFromCompetition = async (competition_id: string) => {
     try {

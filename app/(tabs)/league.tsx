@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react"
 import { Page } from "../../components/Pages"
 import { Text, View } from "react-native"
 import { useYear } from "../../hooks/useYear"
-import { League } from "../../services/types/league"
-import { getLeagueResults } from "../../services/api/league"
+import { League } from "../../types/types"
+import { getLeagueResults } from "../../api/league"
 import LeagueResults from "../../components/LeagueResults"
 
 export default function LeagueResume() {

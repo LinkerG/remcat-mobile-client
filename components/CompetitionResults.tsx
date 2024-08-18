@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { Picker } from '@react-native-picker/picker';
 import { useCategory, useDivision, useSetCategory, useSetDivision } from "../hooks/useCategory";
-import { Result } from "../services/types/result";
-import { categories, divisions } from "../services/types/consts";
+import { Result } from "../types/types";
+import { categories, divisions } from "../types/consts";
 import Table from "./tables/Table";
 
 interface Props {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, Text } from 'react-native';
-import { Competition } from '../services/types/competition';
+import { Competition } from '../types/types';
 import { Link } from 'expo-router';
 
 interface CompetitionProps {

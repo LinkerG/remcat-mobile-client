@@ -4,7 +4,7 @@ import { RootState, AppDispatch } from '../store/store';
 import { closeModal } from '../store/reducers/selectYearModal';
 import { Text, StyleSheet, Modal, Animated, Easing, TouchableWithoutFeedback, Pressable } from 'react-native';
 import { useSetYear, useYear } from '../hooks/useYear';
-import { getYears } from '../services/api/competitions';
+import { getYears } from '../api/competitions';
 
 export default function SelectYearModal() {
     const actualYear = useYear();
@@ -22,9 +22,6 @@ export default function SelectYearModal() {
         };
         fetchData();
     }, [])
-
-    console.log(years)
-    console.log(actualYear)
 
     const dispatch: AppDispatch = useDispatch();
     const isOpen = useSelector((state: RootState) => state.modal.isOpen);

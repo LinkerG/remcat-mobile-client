@@ -1,5 +1,5 @@
 import { apiClient } from "./apiClient"
-import { Competition } from "../types/competition"
+import { Competition } from "../types/types"
 
 export const getCompetitions = async () => {
     try {
@@ -98,7 +98,7 @@ export const getNextCompetitions = async () => {
 export const getYears = async () => {
     try {
         const response = await apiClient.get(`/competitions/years`)
-        console.log(response.data.competitions);
+        console.log(response.data);
         const years: number[] = response.data;
         return years
     } catch (error: any) {

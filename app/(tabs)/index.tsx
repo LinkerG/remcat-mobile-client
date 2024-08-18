@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react"
 import { Text } from "react-native"
 import { ScrollPage } from "../../components/Pages"
-import { Competition } from "../../services/types/competition"
-import { getNextCompetitions } from "../../services/api/competitions"
+import { Competition } from "../../types/types"
+import { getNextCompetitions } from "../../api/competitions"
 import { CompetitionCard } from "../../components/CompetitionCard"
 
 function isToday(date: Date) {
