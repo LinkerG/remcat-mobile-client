@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pressable, Text, Animated } from 'react-native';
+import { fadeIn, fadeOut } from './Animations';
 import { Competition } from '../types/types';
 import { BoatTypes } from '../types/consts';
 import { Link } from 'expo-router';
@@ -10,22 +11,6 @@ interface CompetitionProps {
 
 export function CompetitionCard({ competition }: CompetitionProps) {
     const animated = new Animated.Value(1);
-
-    const fadeIn = () => {
-        Animated.timing(animated, {
-            toValue: 0.4,
-            duration: 100,
-            useNativeDriver: false,
-        }).start();
-    };
-
-    const fadeOut = () => {
-        Animated.timing(animated, {
-            toValue: 1,
-            duration: 200,
-            useNativeDriver: false,
-        }).start();
-    };
 
     const backgroundColor = animated.interpolate({
         inputRange: [0.4, 1],
@@ -42,7 +27,7 @@ export function CompetitionCard({ competition }: CompetitionProps) {
 
     return (
         <Link href={`/competitions/${competition.slug}`} asChild>
-            <Pressable onPressIn={fadeIn} onPressOut={fadeOut}>
+            <Pressable onPressIn={() => fadeIn(animated)} onPressOut={() => fadeOut(animated)}>
                 <Animated.View
                     className="my-3 p-5 rounded-lg"
                     style={{ backgroundColor }}

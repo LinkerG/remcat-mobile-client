@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pressable, Text, Image, Animated, View } from 'react-native';
+import { fadeIn, fadeOut } from './Animations';
 import { Team } from '../types/types';
 import { Link } from 'expo-router';
 
@@ -11,22 +12,6 @@ interface TeamProps {
 export function TeamCard({ team }: TeamProps) {
     const animated = new Animated.Value(1);
 
-    const fadeIn = () => {
-        Animated.timing(animated, {
-            toValue: 0.4,
-            duration: 100,
-            useNativeDriver: false,
-        }).start();
-    };
-
-    const fadeOut = () => {
-        Animated.timing(animated, {
-            toValue: 1,
-            duration: 200,
-            useNativeDriver: false,
-        }).start();
-    };
-
     const backgroundColor = animated.interpolate({
         inputRange: [0.4, 1],
         outputRange: ['#92ACCE', '#D0E0F5'],
@@ -34,7 +19,7 @@ export function TeamCard({ team }: TeamProps) {
 
     return (
         <Link href={`/teams/${team.shortName}`} asChild key={team._id}>
-            <Pressable onPressIn={fadeIn} onPressOut={fadeOut}>
+            <Pressable onPressIn={() => fadeIn(animated)} onPressOut={() => fadeOut(animated)}>
                 <Animated.View
                     className="my-3 p-5 rounded-lg flex-row justify-between"
                     style={{ backgroundColor }}
