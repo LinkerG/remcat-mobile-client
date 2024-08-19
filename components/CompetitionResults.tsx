@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import { Picker } from '@react-native-picker/picker';
 import { useCategory, useDivision, useSetCategory, useSetDivision } from "../hooks/useCategory";
 import { Result } from "../types/types";
-import { categories, divisions } from "../types/consts";
+import { Categories, Divisions } from "../types/consts";
 import Table from "./tables/Table";
 
 interface Props {
@@ -49,7 +49,7 @@ export default function CompetitionResultsTable({ results }: Props) {
                         setCategory(itemValue)
                     }
                 >
-                    {categories.map((category) => (
+                    {Categories.map((category) => (
                         <Picker.Item key={category.key} label={category.name} value={category.key} />
                     ))}
                 </Picker>
@@ -59,7 +59,7 @@ export default function CompetitionResultsTable({ results }: Props) {
                         setDivision(itemValue)
                     }
                 >
-                    {divisions.map((division) => (
+                    {Divisions.map((division) => (
                         <Picker.Item key={division.key} label={division.name} value={division.key} />
                     ))}
                 </Picker>

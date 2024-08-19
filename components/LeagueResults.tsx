@@ -4,7 +4,7 @@ import { useCategory, useDivision, useSetCategory, useSetDivision } from "../hoo
 import { Text, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { League } from "../types/types";
-import { categories, divisions, boatTypes } from "../types/consts";
+import { Categories, Divisions, BoatTypes } from "../types/consts";
 import LeagueTable from "./tables/LeagueTable";
 
 interface Props {
@@ -42,7 +42,7 @@ export default function LeagueResults({ leagues }: Props) {
                                 setCategory(itemValue)
                             }
                         >
-                            {categories.map((category) => (
+                            {Categories.map((category) => (
                                 <Picker.Item key={category.key} label={category.name} value={category.key} />
                             ))}
                         </Picker>
@@ -52,7 +52,7 @@ export default function LeagueResults({ leagues }: Props) {
                                 setDivision(itemValue)
                             }
                         >
-                            {divisions.map((division) => (
+                            {Divisions.map((division) => (
                                 <Picker.Item key={division.key} label={division.name} value={division.key} />
                             ))}
                         </Picker>
@@ -62,7 +62,7 @@ export default function LeagueResults({ leagues }: Props) {
                                 setBoatType(itemValue)
                             }
                         >
-                            {boatTypes.map((boatType) => (
+                            {BoatTypes.map((boatType) => (
                                 <Picker.Item key={boatType.key} label={boatType.name} value={boatType.key} />
                             ))}
                         </Picker>

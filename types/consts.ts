@@ -1,4 +1,4 @@
-export const categories = [
+export const Categories = [
     {
         key: "S",
         name: "Senior"
@@ -25,7 +25,7 @@ export const categories = [
     },
 ]
 
-export const divisions = [
+export const Divisions = [
     {
         key: "M",
         name: "Masculino"
@@ -36,7 +36,7 @@ export const divisions = [
     },
 ]
 
-export const boatTypes = [
+export const BoatTypes = [
     {
         key: "batel",
         name: "Batel"
