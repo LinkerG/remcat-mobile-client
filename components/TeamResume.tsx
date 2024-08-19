@@ -45,8 +45,8 @@ export function TeamResumeComponent({ resume }: Props) {
 
     if (!yearData) {
         return (
-            <View className="flex-1 justify-center items-center">
-                <Text className="text-lg">No hay datos disponibles para el año {year}.</Text>
+            <View className="flex-1">
+                <Text className="text-lg">No hay datos disponibles para el año {year}</Text>
             </View>
         );
     }
