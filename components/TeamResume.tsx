@@ -65,8 +65,7 @@ export function TeamResumeComponent({ resume }: Props) {
                                     className="w-1/4 justify-center items-center"
                                 >
                                     <ResultBadge
-                                        category={result.category}
-                                        position={result.position}
+                                        result={result}
                                     />
                                 </View>
                             ))}

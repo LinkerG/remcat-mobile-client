@@ -2,11 +2,11 @@ import React from "react";
 import { Text, View } from "react-native";
 
 interface Props {
-    category: string
-    position: number
+    result: { category: string; position: number };
 }
 
-export default function ResultBadge({ category, position }: Props) {
+export default function ResultBadge({ result }: Props) {
+    const { category, position } = result;
 
     switch (position) {
         case 1:
