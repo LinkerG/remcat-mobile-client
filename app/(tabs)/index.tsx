@@ -1,6 +1,6 @@
 // /
 import React, { useEffect, useState } from "react"
-import { Text } from "react-native"
+import { Text, View } from "react-native"
 import { ScrollPage } from "../../components/Pages"
 import { Competition } from "../../types/types"
 import { getNextCompetitions } from "../../api/competitions"
@@ -46,30 +46,30 @@ export default function Home() {
     return (
         <ScrollPage>
             {(!loading) && (
-                <>
+                <View className="m-5">
                     {(competitions.length === 0) ? (
-                        <Text className="m-5">Mas competiciones proximamente</Text>
+                        <Text className="text-2xl font-semibold mb-2">¡Mas competiciones próximamente!</Text>
                     ) : (
                         <>
                             {isCompetitionToday ? (
-                                <Text className="m-5">¡La competición de hoy!</Text>
+                                <Text className="text-2xl font-semibold mb-2">¡La competición de hoy!</Text>
                             ) : (
-                                <Text className="m-5">Próxima competición, faltan {getDaysLeft(nextCompetition.date)} días</Text>
+                                <Text className="text-2xl font-semibold mb-2">Próxima competición, faltan {getDaysLeft(nextCompetition.date)} días</Text>
                             )}
                             <CompetitionCard competition={nextCompetition} />
-                            <Text className="m-5">Próximas competiciones</Text>
-                            {(competitions.length > 1) &&
-                                competitions.map((competition, i) => (
-                                    i === 0 ? (
-                                        null
-                                    ) : (
+                            {competitions.length > 1 ? (
+                                <>
+                                    <Text className="my-3 text-xl font-medium">Siguientes competiciones:</Text>
+                                    {competitions.slice(1).map((competition) => (
                                         <CompetitionCard key={competition._id} competition={competition} />
-                                    )
-                                ))
-                            }
+                                    ))}
+                                </>
+                            ) : (
+                                <Text className="my-3 text-xl font-medium">Más competiciones próximamente!</Text>
+                            )}
                         </>
                     )}
-                </>
+                </View>
             )}
         </ScrollPage>
     )
