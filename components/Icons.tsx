@@ -9,7 +9,7 @@ export const HomeIcon = (props: any) => {
 
 export const UserIcon = (props: any) => {
     return (
-        <FontAwesome6 name="user" size={24} color="white" {...props} />
+        <FontAwesome6 name="user" solid size={24} color="white" {...props} />
     )
 }
 
@@ -27,6 +27,6 @@ export const LeagueIcon = (props: any) => {
 
 export const CompetitionsIcon = (props: any) => {
     return (
-        <FontAwesome6 name="calendar" size={24} color="white" {...props} />
+        <FontAwesome6 name="calendar" solid size={24} color="white" {...props} />
     )
 }

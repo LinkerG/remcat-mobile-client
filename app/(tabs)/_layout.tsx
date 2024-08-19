@@ -6,6 +6,7 @@ export default function TabsLayout() {
     const inactiveColor = "#076eed"
     const activeColor = "#db5500"
 
+    // TODO: La navegación no es consistente, cuando vas hacia atrás te tiene que llevar a la pagina que estabas antes
     return (
         <Tabs
             screenOptions={{
