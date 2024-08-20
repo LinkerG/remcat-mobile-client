@@ -3,22 +3,13 @@ import { Text, View } from "react-native";
 import { Picker } from '@react-native-picker/picker';
 import { useCategory, useDivision, useSetCategory, useSetDivision } from "../hooks/useCategory";
 import { Result } from "../types/types";
-import { categories, divisions } from "../types/consts";
-import Table from "./tables/Table";
+import { Categories, Divisions } from "../types/consts";
+import ResultsTable from "./tables/ResultsTable";
+import { LeaguePickerStyle, UnderlineStyle } from "./Styles";
+import Constants from "expo-constants";
 
 interface Props {
     results: Result[]
-}
-
-function HasFinals(category: string, division: string, results: Result[]): boolean {
-    const fullCategory = category + division;
-
-    const filteredResults = results.filter(result => result.category === fullCategory);
-
-    const hasFinals = filteredResults.some(result => result.isFinal);
-    console.log(hasFinals)
-
-    return hasFinals;
 }
 
 export default function CompetitionResultsTable({ results }: Props) {
@@ -26,8 +17,7 @@ export default function CompetitionResultsTable({ results }: Props) {
     const setCategory = useSetCategory();
     const division = useDivision();
     const setDivision = useSetDivision();
-
-    const hasFinals = HasFinals(category, division, results)
+    const isWeb: boolean = Constants.expoConfig?.web?.shortName ? true : false;
 
     const [resultsToShow, setResultsToShow] = useState<Result[]>([])
 
@@ -42,34 +32,38 @@ export default function CompetitionResultsTable({ results }: Props) {
 
     return (
         <View>
-            <View>
+            <Text className="text-2xl font-semibold mb-5">Resultados</Text>
+            <View className={
+                isWeb ?
+                    "flex-row justify-around my-4" :
+                    "flex-row justify-around my-4 border-b-2"
+            }
+                style={UnderlineStyle.underline}
+            >
                 <Picker
+                    style={LeaguePickerStyle.half}
                     selectedValue={category}
                     onValueChange={(itemValue, itemIndex) =>
                         setCategory(itemValue)
                     }
                 >
-                    {categories.map((category) => (
+                    {Categories.map((category) => (
                         <Picker.Item key={category.key} label={category.name} value={category.key} />
                     ))}
                 </Picker>
                 <Picker
+                    style={LeaguePickerStyle.half}
                     selectedValue={division}
                     onValueChange={(itemValue, itemIndex) =>
                         setDivision(itemValue)
                     }
                 >
-                    {divisions.map((division) => (
+                    {Divisions.map((division) => (
                         <Picker.Item key={division.key} label={division.name} value={division.key} />
                     ))}
                 </Picker>
             </View>
-            {hasFinals ? (
-                <Text>Aqui iria una tabla con tabs</Text>
-            ) : (
-                <Table results={resultsToShow} />
-            )
-            }
+            <ResultsTable results={resultsToShow} />
         </View >
     )
 }

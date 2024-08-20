@@ -3,7 +3,8 @@ import 'dotenv/config';
 export default {
     expo: {
         name: "client",
-        slug: "client",
+        owner: "linkerg",
+        slug: "remcat",
         version: "1.0.0",
         orientation: "portrait",
         icon: "./assets/icon.png",
@@ -32,6 +33,9 @@ export default {
         extra: {
             api_url: process.env.API_URL,
             api_key: process.env.API_KEY,
+            "eas": {
+                "projectId": "765740bd-f97e-4bc0-bf25-544f84d7fa81"
+            }
         },
     }
 };

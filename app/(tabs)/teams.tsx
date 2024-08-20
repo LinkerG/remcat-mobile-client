@@ -3,6 +3,7 @@ import { ScrollPage } from "../../components/Pages";
 import { Team } from "../../types/types";
 import { TeamCard } from "../../components/TeamCard";
 import { getTeams } from "../../api/teams";
+import { View } from "react-native";
 
 export default function Teams() {
     const [teams, setTeams] = useState<Team[]>();
@@ -18,9 +19,17 @@ export default function Teams() {
 
     return (
         <ScrollPage>
-            {!loading && teams?.map((team) => (
-                <TeamCard key={team.shortName} team={team} />
-            ))}
+            {(!loading && teams) ? (
+                <View className="m-5">
+                    {
+                        teams.map((team) => (
+                            <TeamCard key={team.shortName} team={team} />
+                        ))
+                    }
+                </View>
+            ) : (
+                null // TODO: Añadir loader de página
+            )}
         </ScrollPage>
     );
 }

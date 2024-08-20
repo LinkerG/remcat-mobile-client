@@ -4,8 +4,10 @@ import { useCategory, useDivision, useSetCategory, useSetDivision } from "../hoo
 import { Text, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { League } from "../types/types";
-import { categories, divisions, boatTypes } from "../types/consts";
+import { Categories, Divisions, BoatTypes } from "../types/consts";
 import LeagueTable from "./tables/LeagueTable";
+import { LeaguePickerStyle, UnderlineStyle } from "./Styles";
+import Constants from "expo-constants";
 
 interface Props {
     leagues: League[]
@@ -18,6 +20,8 @@ export default function LeagueResults({ leagues }: Props) {
     const setDivision = useSetDivision();
     const boatType = useBoatType();
     const setBoatType = useSetBoatType();
+
+    const isWeb: boolean = Constants.expoConfig?.web?.shortName ? true : false;
 
     const [loading, setLoading] = useState(true)
     const [selectedLeague, setSelectedLeague] = useState<League>()
@@ -35,40 +39,57 @@ export default function LeagueResults({ leagues }: Props) {
         <>
             {!loading && (
                 <View>
-                    <View>
+                    <View
+                        className={
+                            isWeb ?
+                                "flex-row justify-around my-4" :
+                                "flex-row justify-around my-4 border-b-2"
+                        }
+                        style={UnderlineStyle.underline}
+                    >
                         <Picker
+                            style={LeaguePickerStyle.half}
                             selectedValue={category}
                             onValueChange={(itemValue, itemIndex) =>
                                 setCategory(itemValue)
                             }
                         >
-                            {categories.map((category) => (
+                            {Categories.map((category) => (
                                 <Picker.Item key={category.key} label={category.name} value={category.key} />
                             ))}
                         </Picker>
                         <Picker
+                            style={LeaguePickerStyle.half}
                             selectedValue={division}
                             onValueChange={(itemValue, itemIndex) =>
                                 setDivision(itemValue)
                             }
                         >
-                            {divisions.map((division) => (
+                            {Divisions.map((division) => (
                                 <Picker.Item key={division.key} label={division.name} value={division.key} />
                             ))}
                         </Picker>
+                    </View>
+                    <View
+                        className={
+                            !isWeb ? "border-b-2 mb-5" : ""
+                        }
+                        style={UnderlineStyle.underline}
+                    >
                         <Picker
+                            style={LeaguePickerStyle.full}
                             selectedValue={boatType}
                             onValueChange={(itemValue, itemIndex) =>
                                 setBoatType(itemValue)
                             }
                         >
-                            {boatTypes.map((boatType) => (
+                            {BoatTypes.map((boatType) => (
                                 <Picker.Item key={boatType.key} label={boatType.name} value={boatType.key} />
                             ))}
                         </Picker>
                     </View>
                     {!selectedLeague ? (
-                        <Text>No hay resultados de esta categoria</Text>
+                        <Text>No hay resultados de esta categoría</Text>
                     ) : (
                         <LeagueTable league={selectedLeague} />
                     )}

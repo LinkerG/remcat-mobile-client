@@ -5,6 +5,7 @@ import { Competition } from '../../types/types';
 import { CompetitionCard } from '../../components/CompetitionCard';
 import { ScrollPage } from '../../components/Pages';
 import { useYear } from '../../hooks/useYear';
+import { Text, View } from 'react-native';
 
 const Competitions = () => {
     const [competitions, setCompetitions] = useState<Competition[]>();
@@ -22,9 +23,18 @@ const Competitions = () => {
 
     return (
         <ScrollPage>
-            {!loading && competitions?.map((competition) => (
-                <CompetitionCard key={competition._id} competition={competition} />
-            ))}
+            {(!loading && competitions) ? (
+                <View className="m-5">
+                    <Text className="text-2xl font-semibold mb-2">Competiciones temporada {year}</Text>
+                    {
+                        competitions.map((competition) => (
+                            <CompetitionCard key={competition._id} competition={competition} />
+                        ))
+                    }
+                </View>
+            ) : (
+                null // TODO: Añadir loader de página
+            )}
         </ScrollPage>
     );
 };
