@@ -5,28 +5,7 @@ import { ScrollPage } from "../../components/Pages"
 import { Competition } from "../../types/types"
 import { getNextCompetitions } from "../../api/competitions"
 import { CompetitionCard } from "../../components/CompetitionCard"
-
-function isToday(date: Date) {
-    const today = new Date()
-
-    return (
-        today.getDate() === date.getDate() &&
-        today.getMonth() === date.getMonth() &&
-        today.getFullYear() === date.getFullYear()
-    )
-}
-
-function getDaysLeft(date: Date) {
-    const today = new Date()
-
-    today.setHours(0, 0, 0, 0);
-    date.setHours(0, 0, 0, 0);
-
-    const differenceInTime = date.getTime() - today.getTime();
-    const differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
-
-    return differenceInDays;
-}
+import { isToday, getDaysLeft } from "../../utils/functions";
 
 export default function Home() {
     const [loading, setLoading] = useState<boolean>(true)

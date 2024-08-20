@@ -13,6 +13,7 @@ export default function CompetitionResume() {
     const [loading, setLoading] = useState<boolean>(true)
     const [competition, setCompetition] = useState<Competition>()
     const [results, setResults] = useState<Result[]>()
+    const today = new Date()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,7 +35,7 @@ export default function CompetitionResume() {
                         >
                             {competition.name}
                         </Text>
-                        {!results || results.length === 0 ? (
+                        {!results || results.length === 0 || competition.date > today ? (
                             null // TODO: Mostrar detalles de la competición
                         ) : (
                             <CompetitionResults results={results} />
