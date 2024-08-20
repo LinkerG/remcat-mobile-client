@@ -3,7 +3,7 @@ import { League, Team } from "../../types/types";
 import { Text, View } from "react-native";
 import { UnderlineStyle } from "../Styles";
 import { getTeams } from "../../api/teams";
-import getTeamName from "../../utils/getTeamName";
+import { getTeamName } from "../../utils/functions";
 
 interface Props {
     league: League
@@ -52,11 +52,11 @@ export default function LeagueTable({ league }: Props) {
                                         "flex-row justify-between px-3 bg-blue-100"
                                 }
                             >
-                                <Text className="w-1/4 text-lg p-1">
+                                <Text className="w-1/4 text-md p-1">
                                     {i + 1 === 1 ? "1 🥇" : i + 1 === 2 ? "2 🥈" : i + 1 === 3 ? "3 🥉" : i + 1}
                                 </Text>
-                                <Text className="w-2/4 text-lg p-1">{getTeamName(result.teamName, teams as Team[])}</Text>
-                                <Text className="w-1/4 text-lg p-1 text-right">{result.points}</Text>
+                                <Text className="w-2/4 text-md p-1">{getTeamName(result.teamName, teams as Team[])}</Text>
+                                <Text className="w-1/4 text-md p-1 text-right">{result.points}</Text>
                             </View>
                         ))}
                     </>
