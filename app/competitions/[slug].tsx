@@ -13,6 +13,7 @@ export default function CompetitionResume() {
     const [loading, setLoading] = useState<boolean>(true)
     const [competition, setCompetition] = useState<Competition>()
     const [results, setResults] = useState<Result[]>()
+    const today = new Date()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,24 +21,25 @@ export default function CompetitionResume() {
             setCompetition(_competition)
             setResults(await getResultsFromCompetition(_competition._id))
             setLoading(false)
-        }
+        };
         fetchData();
     }, [slug])
 
     return (
         <ScrollPage>
-            {(!loading && competition && results) ? (
+            {(!loading && competition) ? (
                 <>
-                    <View
-                        className="m-5 border"
-                    >
-                        <Text>{competition.name}</Text>
-                    </View>
-                    <View
-                        className="m-5 border"
-                    >
-                        <Text>Resultados</Text>
-                        <CompetitionResults results={results} />
+                    <View className="m-5">
+                        <Text
+                            className="text-2xl font-semibold mb-5"
+                        >
+                            {competition.name}
+                        </Text>
+                        {!results || results.length === 0 || competition.date > today ? (
+                            null // TODO: Mostrar detalles de la competición
+                        ) : (
+                            <CompetitionResults results={results} />
+                        )}
                     </View>
                 </>
             ) : (
