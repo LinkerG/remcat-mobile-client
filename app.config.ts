@@ -19,6 +19,7 @@ export default {
             supportsTablet: true
         },
         android: {
+            package: "com.linkerg.remcat",
             adaptiveIcon: {
                 foregroundImage: "./assets/adaptive-icon.png",
                 backgroundColor: "#ffffff"
