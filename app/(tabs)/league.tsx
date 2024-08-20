@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Page } from "../../components/Pages"
+import { ScrollPage } from "../../components/Pages"
 import { Text, View } from "react-native"
 import { useYear } from "../../hooks/useYear"
 import { League } from "../../types/types"
@@ -21,15 +21,15 @@ export default function LeagueResume() {
     }, [year])
 
     return (
-        <Page>
+        <ScrollPage>
             {!loading ? (
                 <View className="m-5">
-                    <Text>Datos de la liga {year}</Text>
+                    <Text className="text-2xl font-semibold mb-2">Datos de la liga {year}</Text>
                     <LeagueResults leagues={leagueResume as League[]} />
                 </View>
             ) : (
                 null // TODO: Añadir loader de pagina
             )}
-        </Page>
+        </ScrollPage>
     )
 }
