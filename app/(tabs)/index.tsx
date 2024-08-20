@@ -45,7 +45,7 @@ export default function Home() {
 
     return (
         <ScrollPage>
-            {(!loading) && (
+            {(!loading) ? (
                 <View className="m-5">
                     {(competitions.length === 0) ? (
                         <Text className="text-2xl font-semibold mb-2">¡Mas competiciones próximamente!</Text>
@@ -70,6 +70,8 @@ export default function Home() {
                         </>
                     )}
                 </View>
+            ) : (
+                null // TODO: Añadir loader de página
             )}
         </ScrollPage>
     )

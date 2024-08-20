@@ -23,12 +23,18 @@ const Competitions = () => {
 
     return (
         <ScrollPage>
-            <View className="m-5">
-                <Text className="text-2xl font-semibold mb-2">Competiciones temporada {year}</Text>
-                {!loading && competitions?.map((competition) => (
-                    <CompetitionCard key={competition._id} competition={competition} />
-                ))}
-            </View>
+            {(!loading && competitions) ? (
+                <View className="m-5">
+                    <Text className="text-2xl font-semibold mb-2">Competiciones temporada {year}</Text>
+                    {
+                        competitions.map((competition) => (
+                            <CompetitionCard key={competition._id} competition={competition} />
+                        ))
+                    }
+                </View>
+            ) : (
+                null // TODO: Añadir loader de página
+            )}
         </ScrollPage>
     );
 };

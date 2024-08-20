@@ -19,11 +19,17 @@ export default function Teams() {
 
     return (
         <ScrollPage>
-            <View className="m-5">
-                {!loading && teams?.map((team) => (
-                    <TeamCard key={team.shortName} team={team} />
-                ))}
-            </View>
+            {(!loading && teams) ? (
+                <View className="m-5">
+                    {
+                        teams.map((team) => (
+                            <TeamCard key={team.shortName} team={team} />
+                        ))
+                    }
+                </View>
+            ) : (
+                null // TODO: Añadir loader de página
+            )}
         </ScrollPage>
     );
 }

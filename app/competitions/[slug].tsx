@@ -32,7 +32,7 @@ export default function CompetitionResume() {
 
     return (
         <ScrollPage>
-            {!loading && competition && results && (
+            {(!loading && competition && results) ? (
                 <>
                     <View
                         className="m-5 border"
@@ -46,6 +46,8 @@ export default function CompetitionResume() {
                         <CompetitionResults results={results} />
                     </View>
                 </>
+            ) : (
+                null // TODO: Añadir loader de página
             )}
         </ScrollPage>
     )

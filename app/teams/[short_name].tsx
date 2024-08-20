@@ -26,7 +26,7 @@ export default function TeamDetail() {
 
     return (
         <ScrollPage>
-            {!loading && team && resume && (
+            {(!loading && team && resume) ? (
                 <View
                     className="m-5"
                 >
@@ -58,6 +58,8 @@ export default function TeamDetail() {
                         <TeamResumeComponent resume={resume} />
                     </View>
                 </View>
+            ) : (
+                null // TODO: Añadir loader de página
             )}
         </ScrollPage>
     )

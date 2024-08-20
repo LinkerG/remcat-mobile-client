@@ -22,11 +22,13 @@ export default function LeagueResume() {
 
     return (
         <Page>
-            {!loading && (
+            {!loading ? (
                 <View className="m-5">
                     <Text>Datos de la liga {year}</Text>
                     <LeagueResults leagues={leagueResume as League[]} />
                 </View>
+            ) : (
+                null // TODO: Añadir loader de pagina
             )}
         </Page>
     )
