@@ -1,5 +1,8 @@
 import React from "react";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6"
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5"
+import MaterialIcons from "@expo/vector-icons/MaterialIcons"
+import { Text, View } from "react-native";
 
 export const HomeIcon = (props: any) => {
     return (
@@ -58,5 +61,23 @@ export const LinkedInIcon = (props: any) => {
 export const WebIcon = (props: any) => {
     return (
         <FontAwesome6 name="link" size={24} color="white" {...props} />
+    )
+}
+
+export const AppLogo = (props: any) => {
+    return (
+        <View className="flex-row ml-5 justify-center items-center rounded bg-blue-300 p-1">
+            <MaterialIcons name="rowing" size={30} color="black" {...props} />
+            <Text className="ml-2 text-black font-semibold text-lg">RemCAT</Text>
+        </View>
+    )
+}
+
+export const ChangeIcon = (props: any) => {
+    return (
+        <View className="flex-row-reverse mr-5 justify-center items-center rounded bg-blue-300 p-1">
+            <FontAwesome5 name="cog" size={20} color="black" {...props} />
+            <Text className="mr-2 text-black text-md">Cambiar año</Text>
+        </View>
     )
 }
