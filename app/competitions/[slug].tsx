@@ -16,19 +16,13 @@ export default function CompetitionResume() {
 
     useEffect(() => {
         const fetchData = async () => {
-            setCompetition(await getCompetitionBySlug(slug as string));
-        };
-        fetchData();
-    }, [slug]);
-    useEffect(() => {
-        if (competition) {
-            const fetchData = async () => {
-                setResults(await getResultsFromCompetition(competition._id))
-                setLoading(false)
-            };
-            fetchData();
+            const _competition = await getCompetitionBySlug(slug as string)
+            setCompetition(_competition)
+            setResults(await getResultsFromCompetition(_competition._id))
+            setLoading(false)
         }
-    }, [competition])
+        fetchData();
+    }, [slug])
 
     return (
         <ScrollPage>

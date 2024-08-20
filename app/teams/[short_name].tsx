@@ -17,8 +17,9 @@ export default function TeamDetail() {
 
     useEffect(() => {
         const fetchData = async () => {
-            setTeam(await getTeam(short_name as string));
-            setResume(await getTeamResume(short_name as string));
+            const [_team, _resume] = await Promise.all([getTeam(short_name as string), getTeamResume(short_name as string)])
+            setTeam(_team)
+            setResume(_resume)
             setLoading(false)
         };
         fetchData();
