@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { ScrollPage } from "../../components/Pages"
-import { Text, View } from "react-native"
+import { RefreshControl, Text, View } from "react-native"
 import { useYear } from "../../hooks/useYear"
 import { League } from "../../types/types"
 import { getLeagueResults } from "../../api/league"
@@ -10,6 +10,7 @@ export default function LeagueResume() {
     const year = useYear()
     const [leagueResume, setLeagueResume] = useState<League[]>()
     const [loading, setLoading] = useState(true)
+    const [refreshing, setRefreshing] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,8 +21,22 @@ export default function LeagueResume() {
         fetchData();
     }, [year])
 
+    const onRefresh = useCallback(() => {
+        setRefreshing(true)
+        setTimeout(() => {
+            setRefreshing(false)
+        }, 2000);
+    }, [])
+
     return (
-        <ScrollPage>
+        <ScrollPage
+            refreshControl={
+                <RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                />
+            }
+        >
             {!loading ? (
                 <View className="m-5">
                     <Text className="text-2xl font-semibold mb-2">Datos de la liga {year}</Text>
