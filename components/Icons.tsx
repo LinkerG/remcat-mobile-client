@@ -3,6 +3,7 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6"
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5"
 import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 import { Text, View } from "react-native";
+import { useYear } from "../hooks/useYear";
 
 export const HomeIcon = (props: any) => {
     return (
@@ -66,18 +67,19 @@ export const WebIcon = (props: any) => {
 
 export const AppLogo = (props: any) => {
     return (
-        <View className="flex-row ml-5 justify-center items-center rounded bg-blue-300 p-1">
-            <MaterialIcons name="rowing" size={30} color="black" {...props} />
-            <Text className="ml-2 text-black font-semibold text-lg">RemCAT</Text>
+        <View className="flex-row ml-5 justify-center items-center">
+            {/* <MaterialIcons name="rowing" size={30} color="black" {...props} /> */}
+            <Text className=" text-white font-bold text-xl">RemCAT</Text>
         </View>
     )
 }
 
 export const ChangeIcon = (props: any) => {
+    const year = useYear();
     return (
-        <View className="flex-row-reverse mr-5 justify-center items-center rounded bg-blue-300 p-1">
-            <FontAwesome5 name="cog" size={20} color="black" {...props} />
-            <Text className="mr-2 text-black text-md">Cambiar año</Text>
+        <View className="flex-row mr-5 justify-center items-center rounded-2xl bg-blue-500 p-2 px-3">
+            <Text className="text-white font-semibold text-md mr-1">{year} </Text>
+            <FontAwesome6 name="arrow-right" size={16} color="white" {...props} />
         </View>
     )
 }

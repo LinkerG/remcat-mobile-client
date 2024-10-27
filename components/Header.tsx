@@ -4,14 +4,15 @@ import { useDispatch } from 'react-redux';
 import { openModal } from '../store/reducers/selectYearModal';
 import { AppLogo, ChangeIcon } from "./Icons";
 import { Link } from "expo-router";
+import GradientBar from "./GradientBar";
 
 export default function Header() {
     const dispatch = useDispatch();
 
     return (
-        <View className="w-100 bg-blue-400 ">
+        <View className="w-100 bg-blue-600 ">
 
-            <View className="flex h-16 flex-row justify-between items-center">
+            <View className="flex h-16 flex-row justify-between items-center mb-2 pt-2">
                 <Link href="/" asChild>
                     <Pressable>
                         <AppLogo />
@@ -23,7 +24,7 @@ export default function Header() {
                     <ChangeIcon />
                 </Pressable>
             </View>
-            <View className="w-100 h-3 bg-orange-500" />
+            <GradientBar />
         </View >
     )
 }

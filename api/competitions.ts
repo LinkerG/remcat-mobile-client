@@ -55,10 +55,10 @@ export const getCompetitionBySlug = async (slug: string) => {
     }
 }
 
-export const getCompetitionsBySeason = async (season: string) => {
+export const getCompetitionsBySeason = async (year: string) => {
     try {
-        const response = await apiClient.get(`/competitions/season/${season}`)
-        const competitions: Competition[] = response.data.competitions.map((competition: Competition) => ({
+        const response = await apiClient.get(`/competitions/years/${year}`)
+        const competitions: Competition[] = response.data.map((competition: Competition) => ({
             ...competition,
             date: new Date(competition.date),
         }));
@@ -71,17 +71,24 @@ export const getCompetitionsBySeason = async (season: string) => {
             "Error details:",
             error.response ? error.response.data : "No response data",
         )
-        throw error
+
+        return []
     }
 }
 
 export const getNextCompetitions = async () => {
     try {
-        const response = await apiClient.get(`/competitions/nextCompetitions`)
-        const competitions: Competition[] = response.data.competitions.map((competition: Competition) => ({
+        const today = new Date();
+
+        const dateUrlParam = today.toISOString().split('T')[0];
+
+        const response = await apiClient.get(`/competitions?date_from=${dateUrlParam}&isActive=true`)
+
+        const competitions: Competition[] = response.data.map((competition: Competition) => ({
             ...competition,
             date: new Date(competition.date),
         }));
+
         console.log(competitions)
 
         return competitions
@@ -91,7 +98,8 @@ export const getNextCompetitions = async () => {
             "Error details:",
             error.response ? error.response.data : "No response data",
         )
-        throw error
+
+        return []
     }
 }
 
