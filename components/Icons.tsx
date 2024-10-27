@@ -1,7 +1,5 @@
 import React from "react";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6"
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5"
-import MaterialIcons from "@expo/vector-icons/MaterialIcons"
 import { Text, View } from "react-native";
 import { useYear } from "../hooks/useYear";
 
@@ -80,6 +78,14 @@ export const ChangeIcon = (props: any) => {
         <View className="flex-row mr-5 justify-center items-center rounded-2xl bg-blue-500 p-2 px-3">
             <Text className="text-white font-semibold text-md mr-1">{year} </Text>
             <FontAwesome6 name="arrow-right" size={16} color="white" {...props} />
+        </View>
+    )
+}
+
+export const ViewMoreIcon = (props: any) => {
+    return (
+        <View className="">
+            <FontAwesome6 name="chevron-right" size={16} color="black" {...props} />
         </View>
     )
 }

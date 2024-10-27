@@ -11,12 +11,16 @@ export function hasFinals(category: string, division: string, results: Result[])
     return hasFinals;
 }
 
-export function getTeamName(shortName: string, teams: Team[]) {
-    const team = teams.filter((team) => team.shortName === shortName)[0]
+export function getTeamName(team_slug: string, teams: Team[]) {
+    try {
+        const team = teams.filter((team) => team.slug === team_slug)[0]
 
-    if (team) {
-        return team.name;
-    } else {
+        if (team) {
+            return team.name;
+        } else {
+            return team_slug;
+        }
+    } catch (err) {
         return "Nombre desconocido";
     }
 }

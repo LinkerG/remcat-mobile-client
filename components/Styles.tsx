@@ -18,6 +18,6 @@ export const LeaguePickerStyle = StyleSheet.create({
 
 export const UnderlineStyle = StyleSheet.create({
     underline: {
-        borderColor: "#db5500",
+        borderColor: "#6B6B6B",
     }
 })

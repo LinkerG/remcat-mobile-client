@@ -78,7 +78,7 @@ export default function ResultsTable({ results }: Props) {
                     <Text className="px-3 mt-5 text-lg">No hay resultados para esta categoría</Text>
                 ) : (
                     sortedResults.map((result, i) => (
-                        <View key={result.teamShortName}
+                        <View key={result.team_slug}
                             className={
                                 ((i + 1) % 2 === 0) ?
                                     "flex-row justify-between px-3 bg-blue-200" :
@@ -88,7 +88,7 @@ export default function ResultsTable({ results }: Props) {
                             <Text className="w-1/4 text-md p-1">
                                 {i + 1 === 1 ? "1 🥇" : i + 1 === 2 ? "2 🥈" : i + 1 === 3 ? "3 🥉" : i + 1}
                             </Text>
-                            <Text className="w-2/4 text-md p-1">{getTeamName(result.teamShortName, teams as Team[])}</Text>
+                            <Text className="w-2/4 text-md p-1">{getTeamName(result.team_slug, teams as Team[])}</Text>
                             <Text className="w-1/4 text-md p-1 text-right">{result.time}</Text>
                         </View>
                     ))

@@ -5,7 +5,7 @@ export const getTeams = async () => {
     try {
         const response = await apiClient.get("/teams")
         console.log(response.data.teams);
-        const teams: Team[] = response.data.teams;
+        const teams: Team[] = response.data;
         return teams
     } catch (error: any) {
         console.error("Error fetching data:", error.message)
@@ -21,7 +21,7 @@ export const getTeam = async (teamName: string) => {
     try {
         const response = await apiClient.get(`/teams/${teamName}`)
         console.log(response.data.team);
-        const team: Team = response.data.team;
+        const team: Team = response.data;
         return team
     } catch (error: any) {
         console.error("Error fetching data:", error.message)
@@ -37,7 +37,7 @@ export const getTeamResume = async (teamName: string) => {
     try {
         const response = await apiClient.get(`/teams/${teamName}/resume`)
         console.log(response.data.resume);
-        const resume: TeamResume[] = response.data.resume;
+        const resume: TeamResume[] = response.data;
         return resume
     } catch (error: any) {
         console.error("Error fetching data:", error.message)

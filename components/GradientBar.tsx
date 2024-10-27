@@ -7,7 +7,7 @@ export default function GradientBar() {
         <View style={styles.container}>
             <LinearGradient
                 colors={['#db5500', '#FFA500', '#FFFF00', '#FFA500', '#db5500']}
-                locations={[0, 0.50, 0.70, 0.90, 1]}
+                locations={[0, 0.5, 0.65, 0.8, 1]}
                 start={{ x: 0, y: 0 }} // Inicia desde la izquierda
                 end={{ x: 1, y: 0 }}   // Termina en la derecha
                 style={styles.gradient}

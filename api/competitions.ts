@@ -78,11 +78,7 @@ export const getCompetitionsBySeason = async (year: string) => {
 
 export const getNextCompetitions = async () => {
     try {
-        const today = new Date();
-
-        const dateUrlParam = today.toISOString().split('T')[0];
-
-        const response = await apiClient.get(`/competitions?date_from=${dateUrlParam}&isActive=true`)
+        const response = await apiClient.get(`/competitions/upcoming`)
 
         const competitions: Competition[] = response.data.map((competition: Competition) => ({
             ...competition,

@@ -38,15 +38,15 @@ export const Divisions = [
 
 export const BoatTypes = [
     {
-        key: "batel",
+        key: "BATEL",
         name: "Batel"
     },
     {
-        key: "llaut",
+        key: "LLAUT_MED",
         name: "Llaüt Mediterrani"
     },
     {
-        key: "llagut",
+        key: "LLAGUT_CAT",
         name: "Llagut Català"
     },
 ]

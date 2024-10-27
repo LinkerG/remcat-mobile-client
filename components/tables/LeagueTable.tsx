@@ -1,67 +1,89 @@
 import React, { useEffect, useState } from "react";
 import { League, Team } from "../../types/types";
 import { Text, View } from "react-native";
-import { UnderlineStyle } from "../Styles";
 import { getTeams } from "../../api/teams";
 import { getTeamName } from "../../utils/functions";
 
+// Componentes adicionales
 interface Props {
-    league: League
+    league: League;
 }
 
+// Componente para filas de la tabla
+const LeagueRow = ({
+    rank,
+    result,
+    teams,
+    isFirst,
+    isLast
+}: {
+    rank: number;
+    result: any;
+    teams: Team[];
+    isFirst?: boolean;
+    isLast?: boolean;
+}) => (
+    <View
+        key={result.team_slug + result.team_number}
+        className={`
+            ${"flex-row py-1 justify-between"}
+            ${isFirst ? "rounded-t-lg" : ""} 
+            ${isLast ? "rounded-b-lg" : ""} 
+            ${rank % 2 === 0 ? "bg-gray-300" : "bg-gray-200"}
+            `}
+    >
+        <Text className="w-1/6 text-md text-center p-1">
+            {rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : "" + rank}
+        </Text>
+        <Text className="w-4/6 text-md p-1 whitespace-nowrap">
+            {getTeamName(result.team_slug, teams)}
+            {result.team_number !== 0 && " " + result.team_number}
+        </Text>
+        <Text className="w-1/6 text-md p-1 text-center">{result.points}</Text>
+    </View>
+);
+
+// Componente principal para la tabla de liga
 export default function LeagueTable({ league }: Props) {
-    // Ordena los equipos por la cantidad de puntos de mayor a menor
-    const sortedLeague = {
-        ...league,
-        leagueSummary: league.leagueSummary.sort((a, b) => b.points - a.points)
-    };
+    const [teams, setTeams] = useState<Team[]>([]);
+    const [loading, setLoading] = useState(true);
 
-    const [teams, setTeams] = useState<Team[]>()
-    const [loading, setLoading] = useState(true)
-
+    // Obtener los equipos
     useEffect(() => {
-        const fetchData = async () => {
-            setTeams(await getTeams())
-            setLoading(false)
-        }
-        fetchData()
+        const fetchTeams = async () => {
+            const teamData = await getTeams();
+            setTeams(teamData);
+            setLoading(false);
+        };
+        fetchTeams();
     }, []);
 
+    // Ordena los equipos de la liga
+    const sortedLeague = {
+        ...league,
+        league_summary: league.league_summary.sort((a, b) => b.points - a.points)
+    };
+
+    if (loading) return null; // TODO: Añadir loader de tabla
+
     return (
-        loading ? (
-            null // TODO: Añadir loader de tabla
-        ) : (
-            <View>
-                {(sortedLeague.leagueSummary.length === 0) ? (
-                    <Text>No hay resultados para esta categoría</Text>
-                ) : (
-                    <>
-                        <View
-                            className="flex-row border-b-2 mb-1 px-3"
-                            style={UnderlineStyle.underline}
-                        >
-                            <Text className="w-1/4 text-lg p-1">Posición</Text>
-                            <Text className="w-2/4 text-lg p-1">Equipo</Text>
-                            <Text className="w-1/4 text-lg p-1 text-right">Puntos</Text>
-                        </View>
-                        {sortedLeague.leagueSummary.map((result, i) => (
-                            <View key={result.teamName}
-                                className={
-                                    ((i + 1) % 2 === 0) ?
-                                        "flex-row justify-between px-3 bg-blue-200" :
-                                        "flex-row justify-between px-3 bg-blue-100"
-                                }
-                            >
-                                <Text className="w-1/4 text-md p-1">
-                                    {i + 1 === 1 ? "1 🥇" : i + 1 === 2 ? "2 🥈" : i + 1 === 3 ? "3 🥉" : i + 1}
-                                </Text>
-                                <Text className="w-2/4 text-md p-1">{getTeamName(result.teamName, teams as Team[])}</Text>
-                                <Text className="w-1/4 text-md p-1 text-right">{result.points}</Text>
-                            </View>
-                        ))}
-                    </>
-                )}
-            </View>
-        )
+        <View>
+            {sortedLeague.league_summary.length === 0 ? (
+                <Text>No hay resultados para esta categoría</Text>
+            ) : (
+                <View className="mb-5">
+                    {sortedLeague.league_summary.map((result, i) => (
+                        <LeagueRow
+                            key={result.team_slug + result.team_number}
+                            rank={i + 1}
+                            result={result}
+                            teams={teams}
+                            isFirst={i === 0}
+                            isLast={i === sortedLeague.league_summary.length - 1}
+                        />
+                    ))}
+                </View>
+            )}
+        </View>
     );
 }

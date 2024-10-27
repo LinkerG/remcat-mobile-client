@@ -5,7 +5,7 @@ interface BoatTypeSlice {
 }
 
 const initialState: BoatTypeSlice = {
-    boatType: "llaut",
+    boatType: "LLAUT_MED",
 }
 
 const categorySlice = createSlice({

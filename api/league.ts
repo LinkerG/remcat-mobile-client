@@ -3,8 +3,8 @@ import { League } from "../types/types"
 
 export const getLeagueResults = async (year: string) => {
     try {
-        const response = await apiClient.get(`/league/${year}`)
-        const leagues: League[] = response.data.leagues
+        const response = await apiClient.get(`/results/league/${year}`)
+        const leagues: League[] = response.data
         console.log(leagues);
 
         return leagues
@@ -14,6 +14,7 @@ export const getLeagueResults = async (year: string) => {
             "Error details:",
             error.response ? error.response.data : "No response data",
         )
+
         throw error
     }
 }

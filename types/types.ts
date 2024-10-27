@@ -5,7 +5,7 @@ export type Competition = {
     date: Date
     location: string
     image: string
-    boatType: string
+    boat_type: string
     lines: number
     line_distance: number
     isCancelled: boolean
@@ -17,7 +17,7 @@ export type Competition = {
 export type Team = {
     _id: string
     name: string
-    shortName: string
+    slug: string
     image: string
     isActive: boolean
 }
@@ -25,21 +25,24 @@ export type Team = {
 export type Result = {
     _id: string;
     competition_id: string;
-    teamShortName: string;
+    team_slug: string;
     category: string;
     time: string;
+    group: number;
+    team_number: number;
     isFinal: boolean;
     isValid: boolean;
 }
 
 export type League = {
-    boatType: string
+    boat_type: string
     category: string
-    leagueSummary: LeagueSummary[]
+    league_summary: LeagueSummary[]
 }
 
 export type LeagueSummary = {
-    teamName: string
+    team_slug: string
+    team_number: number
     points: number
 }
 

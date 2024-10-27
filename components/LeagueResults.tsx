@@ -27,8 +27,10 @@ export default function LeagueResults({ leagues }: Props) {
     const [selectedLeague, setSelectedLeague] = useState<League>()
     useEffect(() => {
         const fullCategory = category + division
+        console.log(leagues);
+
         const league = leagues.find(
-            (league) => league.boatType === boatType && league.category === fullCategory
+            (league) => league.boat_type === boatType && league.category === fullCategory
         );
 
         setSelectedLeague(league)
@@ -38,7 +40,15 @@ export default function LeagueResults({ leagues }: Props) {
     return (
         <>
             {!loading && (
-                <View>
+                <View className="bg-gray-100 px-5 rounded-lg mt-5"
+                    style={{
+                        shadowColor: '#000',
+                        shadowOffset: { width: 0, height: 2 },
+                        shadowOpacity: 0.3,
+                        shadowRadius: 6,
+                        elevation: 8, // Para Android
+                    }}
+                >
                     <View
                         className={
                             isWeb ?
@@ -89,7 +99,7 @@ export default function LeagueResults({ leagues }: Props) {
                         </Picker>
                     </View>
                     {!selectedLeague ? (
-                        <Text>No hay resultados de esta categoría</Text>
+                        <Text className="my-10">No hay resultados de esta categoría</Text>
                     ) : (
                         <LeagueTable league={selectedLeague} />
                     )}

@@ -24,7 +24,7 @@ export default function LeagueResume() {
         <ScrollPage>
             {!loading ? (
                 <View className="m-5">
-                    <Text className="text-2xl font-semibold mb-2">Datos de la liga {year}</Text>
+                    <Text className="text-2xl font-semibold mb-2">Clasificación de la liga {year}</Text>
                     <LeagueResults leagues={leagueResume as League[]} />
                 </View>
             ) : (
