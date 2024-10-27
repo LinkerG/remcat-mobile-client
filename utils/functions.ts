@@ -6,7 +6,7 @@ export function hasFinals(category: string, division: string, results: Result[])
     const filteredResults = results.filter(result => result.category === fullCategory);
 
     const hasFinals = filteredResults.some(result => result.isFinal);
-    console.log(hasFinals)
+    console.log("has finals", hasFinals)
 
     return hasFinals;
 }

@@ -4,25 +4,19 @@ import { Text, View } from "react-native";
 import { getTeams } from "../../api/teams";
 import { getTeamName } from "../../utils/functions";
 
-// Componentes adicionales
 interface Props {
     league: League;
 }
 
-// Componente para filas de la tabla
-const LeagueRow = ({
-    rank,
-    result,
-    teams,
-    isFirst,
-    isLast
-}: {
+interface RowProps {
     rank: number;
     result: any;
     teams: Team[];
     isFirst?: boolean;
     isLast?: boolean;
-}) => (
+}
+
+const LeagueRow = ({ rank, result, teams, isFirst, isLast }: RowProps) => (
     <View
         key={result.team_slug + result.team_number}
         className={`

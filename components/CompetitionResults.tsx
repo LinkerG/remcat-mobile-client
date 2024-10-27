@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { Picker } from '@react-native-picker/picker';
 import { useCategory, useDivision, useSetCategory, useSetDivision } from "../hooks/useCategory";
 import { Result } from "../types/types";
@@ -31,8 +31,15 @@ export default function CompetitionResultsTable({ results }: Props) {
     }, [category, division, results])
 
     return (
-        <View>
-            <Text className="text-2xl font-semibold mb-5">Resultados</Text>
+        <View className="bg-gray-100 px-5 rounded-lg mt-5"
+            style={{
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.3,
+                shadowRadius: 6,
+                elevation: 8, // Para Android
+            }}
+        >
             <View className={
                 isWeb ?
                     "flex-row justify-around my-4" :

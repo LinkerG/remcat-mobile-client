@@ -10,90 +10,91 @@ import Constants from "expo-constants";
 import { useCategory, useDivision } from "../../hooks/useCategory";
 
 interface Props {
-    results: Result[]
+    results: Result[];
 }
+
+interface RowProps {
+    rank: number;
+    result: Result;
+    teams: Team[];
+    isFirst?: boolean;
+    isLast?: boolean;
+}
+
+const ResultRow = ({ rank, result, teams, isFirst, isLast }: RowProps) => (
+    <View
+        className={`flex-row py-1 justify-between ${isFirst ? "rounded-t-lg" : ""} ${isLast ? "rounded-b-lg" : ""} ${rank % 2 === 0 ? "bg-gray-300" : "bg-gray-200"}`}
+    >
+        <Text className="w-1/6 text-md text-center p-1">
+            {rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : "" + rank}
+        </Text>
+        <Text className="w-3/6 text-md p-1 whitespace-nowrap">
+            {getTeamName(result.team_slug, teams)}
+            {result.team_number !== 0 && " " + result.team_number}
+        </Text>
+        <Text className="w-2/6 text-md p-1 text-center">{result.time}</Text>
+    </View>
+);
 
 export default function ResultsTable({ results }: Props) {
     const isWeb: boolean = Constants.expoConfig?.web?.shortName ? true : false;
 
     const category = useCategory();
     const division = useDivision();
+    const finals: number = hasFinals(category, division, results) ? 1 : 0;
 
-    const finals: boolean = hasFinals(category, division, results)
 
-    const [teams, setTeams] = useState<Team[]>()
-    const [loading, setLoading] = useState(true)
-    const [selectedTab, setSelectedTab] = useState<number>(finals ? 1 : 0)
-    console.log(selectedTab)
 
-    // eslint-disable-next-line eqeqeq
-    const sortedResults = selectedTab == 1 ?
-        sortResults(results.filter((res) => res.isFinal === true)) :
-        sortResults(results.filter((res) => res.isFinal === false))
+    const [teams, setTeams] = useState<Team[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [selectedTab, setSelectedTab] = useState<number>(finals);
 
-    console.log(sortedResults)
+    const sortedResults = selectedTab === 1
+        ? sortResults(results.filter((res) => res.isFinal === true))
+        : sortResults(results.filter((res) => res.isFinal === false));
 
     useEffect(() => {
         const fetchData = async () => {
-            setTeams(await getTeams())
-            setLoading(false)
-        }
-        fetchData()
+            const teamData = await getTeams();
+            setTeams(teamData);
+            setLoading(false);
+        };
+        fetchData();
     }, []);
 
-    return (
-        loading ? (
-            null // TODO: Añadir loader de tabla
-        ) : (
-            <View>
-                <View
-                    className={
-                        isWeb ?
-                            "flex-row justify-around mt-1" :
-                            "flex-row justify-around mt-1 border-b-2"
-                    }
-                    style={UnderlineStyle.underline}
-                >
-                    <Picker
-                        style={LeaguePickerStyle.full}
-                        selectedValue={selectedTab}
-                        onValueChange={(itemValue, itemIndex) =>
-                            setSelectedTab(itemValue)
-                        }
-                    >
+    if (loading) return null; // TODO: Añadir loader de tabla
 
-                        <Picker.Item key={"semi"} label={"Semifinal"} value={0} />
-                        <Picker.Item key={"final"} label={"Final"} value={1} />
-                    </Picker>
-                </View>
-                <View
-                    className="flex-row border-b-2 mb-1 px-3"
-                    style={UnderlineStyle.underline}
+    return (
+        <View>
+            <View
+                className={isWeb ? "flex-row justify-around mt-1 mb-5" : "flex-row justify-around mt-1 mb-5 border-b-2"}
+                style={UnderlineStyle.underline}
+            >
+                <Picker
+                    style={LeaguePickerStyle.full}
+                    selectedValue={selectedTab}
+                    onValueChange={(itemValue) => setSelectedTab(itemValue)}
                 >
-                    <Text className="w-1/4 text-lg p-1">Posición</Text>
-                    <Text className="w-2/4 text-lg p-1">Equipo</Text>
-                    <Text className="w-1/4 text-lg p-1 text-right">Tiempo</Text>
-                </View>
-                {(sortedResults.length === 0) ? (
-                    <Text className="px-3 mt-5 text-lg">No hay resultados para esta categoría</Text>
-                ) : (
-                    sortedResults.map((result, i) => (
-                        <View key={result.team_slug}
-                            className={
-                                ((i + 1) % 2 === 0) ?
-                                    "flex-row justify-between px-3 bg-blue-200" :
-                                    "flex-row justify-between px-3 bg-blue-100"
-                            }
-                        >
-                            <Text className="w-1/4 text-md p-1">
-                                {i + 1 === 1 ? "1 🥇" : i + 1 === 2 ? "2 🥈" : i + 1 === 3 ? "3 🥉" : i + 1}
-                            </Text>
-                            <Text className="w-2/4 text-md p-1">{getTeamName(result.team_slug, teams as Team[])}</Text>
-                            <Text className="w-1/4 text-md p-1 text-right">{result.time}</Text>
-                        </View>
-                    ))
-                )}
+                    <Picker.Item key={"semi"} label={"Semifinal"} value={0} />
+                    <Picker.Item key={"final"} label={"Final"} value={1} />
+                </Picker>
             </View>
-        )
-    )
+            {sortedResults.length === 0 ? (
+                <Text className="px-3 mt-5 text-lg">No hay resultados para esta categoría</Text>
+            ) : (
+                <View className="mb-5">
+                    {sortedResults.map((result, i) => (
+                        <ResultRow
+                            key={result.team_slug + result.team_number}
+                            rank={i + 1}
+                            result={result}
+                            teams={teams}
+                            isFirst={i === 0}
+                            isLast={i === sortedResults.length - 1}
+                        />
+                    ))}
+                </View>
+            )}
+        </View>
+    );
 }

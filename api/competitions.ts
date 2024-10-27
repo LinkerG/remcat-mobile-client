@@ -41,7 +41,7 @@ export const getCompetitionById = async (_id: string) => {
 export const getCompetitionBySlug = async (slug: string) => {
     try {
         const response = await apiClient.get(`/competitions/slug/${slug}`)
-        const competition: Competition = response.data.competition;
+        const competition: Competition = response.data;
         competition.date = new Date(competition.date)
         console.log(competition);
         return competition
