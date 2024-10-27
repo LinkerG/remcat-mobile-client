@@ -5,7 +5,7 @@ import ResultBadge from './ResultBadge';
 import { useYear } from '../hooks/useYear';
 
 interface TeamSummary {
-    competition_name: string;
+    competition: string;
     category: string;
     position: number;
 }
@@ -16,10 +16,10 @@ interface Props {
 
 function groupByCompetitionName(results: TeamSummary[]) {
     return results.reduce((acc, result) => {
-        if (!acc[result.competition_name]) {
-            acc[result.competition_name] = [];
+        if (!acc[result.competition]) {
+            acc[result.competition] = [];
         }
-        acc[result.competition_name].push(result);
+        acc[result.competition].push(result);
         return acc;
     }, {} as Record<string, TeamSummary[]>);
 }
@@ -53,10 +53,11 @@ export function TeamResumeComponent({ resume }: Props) {
 
     return (
         <ScrollView>
-            {Object.entries(yearData.results).map(([competitionName, results]) => {
-                const displayName = getBoatTypeName(competitionName);
+            {Object.entries(yearData.results).map(([competition, results]) => {
+                const displayName = getBoatTypeName(competition);
+
                 return (
-                    <View key={competitionName} className="mt-5">
+                    <View key={competition} className="mt-5">
                         <Text className="text-xl font-semibold">{displayName}</Text>
                         <View className="flex-row flex-wrap mt-2">
                             {results.map((result, index) => (

@@ -18,7 +18,7 @@ export type Team = {
     _id: string
     name: string
     slug: string
-    image: string
+    logo: string
     isActive: boolean
 }
 
@@ -52,7 +52,7 @@ export type TeamResume = {
 }
 
 export type TeamSummary = {
-    competition_name: string
+    competition: string
     category: string
     position: number
 }

@@ -35,7 +35,7 @@ export default function TeamDetail() {
                         className=" flex-row"
                     >
                         <Image
-                            source={{ uri: `data:image/jpeg;base64,${team.image}` }}
+                            source={{ uri: `data:image/jpeg;base64,${team.logo}` }}
                             className='w-2/5 min-h-40 h-40 max-h-40 object-contain rounded-lg'
                         />
                         <View className="ml-3 w-3/5">

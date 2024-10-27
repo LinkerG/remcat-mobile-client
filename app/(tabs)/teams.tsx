@@ -23,7 +23,7 @@ export default function Teams() {
                 <View className="m-5">
                     {
                         teams.map((team) => (
-                            <TeamCard key={team.shortName} team={team} />
+                            <TeamCard key={team.slug} team={team} />
                         ))
                     }
                 </View>

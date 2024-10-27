@@ -4,7 +4,7 @@ import { Team, TeamResume } from "../types/types"
 export const getTeams = async () => {
     try {
         const response = await apiClient.get("/teams")
-        console.log(response.data.teams);
+        console.log(response.data);
         const teams: Team[] = response.data;
         return teams
     } catch (error: any) {
@@ -19,8 +19,8 @@ export const getTeams = async () => {
 
 export const getTeam = async (teamName: string) => {
     try {
-        const response = await apiClient.get(`/teams/${teamName}`)
-        console.log(response.data.team);
+        const response = await apiClient.get(`/teams/slug/${teamName}`)
+        console.log(response.data);
         const team: Team = response.data;
         return team
     } catch (error: any) {
@@ -35,8 +35,8 @@ export const getTeam = async (teamName: string) => {
 
 export const getTeamResume = async (teamName: string) => {
     try {
-        const response = await apiClient.get(`/teams/${teamName}/resume`)
-        console.log(response.data.resume);
+        const response = await apiClient.get(`/teams/resume/${teamName}`)
+        console.log(response.data);
         const resume: TeamResume[] = response.data;
         return resume
     } catch (error: any) {
